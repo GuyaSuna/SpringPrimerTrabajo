@@ -15,7 +15,7 @@ public class PeliculasController {
 
     @GetMapping()
     public String getMethodName() {
-        return "Api Funcional";
+        return "Api Re Funcional";
     }
     
 
