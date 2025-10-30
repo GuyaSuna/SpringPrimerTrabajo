@@ -1,11 +1,18 @@
 package com.example.demo.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class PeliculaEntity {
     
-
+@Id
 private int id;
 
+
+@Column(name = "Titulo" , nullable = false , length = 100)
 private String nombre;
+
 
 public int getId(){
     return this.id;
@@ -34,6 +41,7 @@ public PeliculaEntity(int id , String nombre){
     this.nombre = nombre;
 }
 
+public PeliculaEntity(){};
 
     
 }
