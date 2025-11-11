@@ -9,8 +9,6 @@ public class ProductoEntity {
     private String categoria;
     
 
-    
-
     //Gets
     public int getId() {
         return id;
