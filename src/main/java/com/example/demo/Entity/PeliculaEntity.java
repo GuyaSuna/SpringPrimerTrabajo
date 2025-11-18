@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class PeliculaEntity {
@@ -14,6 +17,14 @@ private int id;
 
 @Column(name = "Titulo" , nullable = false , length = 100)
 private String nombre;
+
+
+@ManyToOne
+@JoinColumn(name = "autor_id")
+private AutorEntity autor;
+
+@OneToOne(mappedBy = "peliculaEntity")
+private Elenco elenco;
 
 
 public int getId(){
