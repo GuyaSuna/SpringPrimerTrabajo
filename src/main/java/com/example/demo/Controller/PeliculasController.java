@@ -32,6 +32,8 @@ public class PeliculasController {
         return peliculaService.getAll();
     }
 
+
+
     @GetMapping("getPelicula/{id}")
     public ResponseEntity<PeliculaEntity> getPelicula(@PathVariable int id) {
         return peliculaService.getPelicula(id);

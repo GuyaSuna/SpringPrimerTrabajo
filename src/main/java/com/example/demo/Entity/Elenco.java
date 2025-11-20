@@ -18,4 +18,5 @@ public class Elenco {
     @JoinColumn(name = "pelicula_id")
     private PeliculaEntity peliculaEntity;
     
+    
 }

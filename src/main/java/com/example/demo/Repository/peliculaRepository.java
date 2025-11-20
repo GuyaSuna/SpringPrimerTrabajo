@@ -10,7 +10,11 @@ public interface peliculaRepository extends JpaRepository<PeliculaEntity , Integ
     public ArrayList<PeliculaEntity> findAllById(int id);
     public ArrayList<PeliculaEntity> findAll();
 
-    public PeliculaEntity findById(int id);
+
+
+
+    
+   
 
 
 }
