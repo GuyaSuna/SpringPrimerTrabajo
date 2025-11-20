@@ -7,65 +7,63 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
-public class AutorEntity {
-    
+public class CineEntity {
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String nombre;
 
-    @OneToMany(mappedBy = "autor")
+    @ManyToMany
+    @JoinTable(name = "cine_pelicula",
+    joinColumns = @JoinColumn( name = "Cine_id" ), 
+    inverseJoinColumns = @JoinColumn(name = "Pelicula_id")
+    )
     private List<PeliculaEntity> listaPeliculas = new ArrayList<>();
 
 
 
 
 
+    
+
     @Override
     public String toString() {
-        return "AutorEntity [id=" + id + ", nombre=" + nombre + ", listaPeliculas=" + listaPeliculas + "]";
+        return "CineEntity [id=" + id + ", nombre=" + nombre + ", listaPeliculas=" + listaPeliculas + "]";
     }
 
-    public AutorEntity() {
+    public CineEntity() {
     }
 
-        public AutorEntity(int id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-    }
-
-    public AutorEntity(int id, String nombre, ArrayList<PeliculaEntity> listaPeliculas) {
+    public CineEntity(int id, String nombre, ArrayList<PeliculaEntity> listaPeliculas) {
         this.id = id;
         this.nombre = nombre;
         this.listaPeliculas = listaPeliculas;
     }
+
+    public CineEntity(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<PeliculaEntity> getListaPeliculas() {
-        return listaPeliculas;
-    }
-
-    public void setListaPeliculas(List<PeliculaEntity> listaPeliculas) {
-        this.listaPeliculas = listaPeliculas;
     }
 
 

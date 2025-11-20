@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class peliculaServiceImpl implements peliculaService {
     }
 
 
+
     @Override
     public ResponseEntity<?> postPelicula(PeliculaEntity pelicula) {
         return new ResponseEntity<>(repo.save(pelicula) , HttpStatus.valueOf(201));
@@ -33,19 +35,16 @@ public class peliculaServiceImpl implements peliculaService {
 
     @Override
     public ResponseEntity<PeliculaEntity> getPelicula(int id) {
-        PeliculaEntity peliculaRetorno = null;
+        
+        Optional<PeliculaEntity> peliculaRetorno = repo.findById(id);
 
-        for(PeliculaEntity pelicula : listaPeliculas){
-            if(pelicula.getId() == id){
-                peliculaRetorno = pelicula;
-            }
-        }
-
-        if(peliculaRetorno == null){
-            return new ResponseEntity<>(null, HttpStatus.valueOf(404));
+        if(peliculaRetorno.isPresent()){
+           return new ResponseEntity<>(peliculaRetorno.get() , HttpStatus.valueOf(200));
         }else{
-            return new ResponseEntity<>(peliculaRetorno, HttpStatus.valueOf(200));
+            return new ResponseEntity<>(null , HttpStatus.valueOf(404));
         }
+
+
     }
 
 
